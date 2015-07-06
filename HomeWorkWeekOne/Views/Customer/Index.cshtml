@@ -1,0 +1,77 @@
+﻿@model IEnumerable<HomeWorkWeekOne.Models.客戶資料>
+
+@{
+    ViewBag.Title = "客戶資料管理";
+}
+
+<h2>客戶資料管理</h2>
+
+<p>
+    <input type="button" value="新增" class="pure-button" onclick="location.href='@Url.Action("Create", "Customer")'" />
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="pure-table pure-table-horizontal">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.客戶名稱)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.統一編號)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.電話)@Html.DisplayNameFor(model => model.傳真)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.傳真)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.地址)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.停用)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.客戶名稱)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.統一編號)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.電話)
+                    <br />
+                    @Html.DisplayFor(modelItem => item.傳真)
+                @*</td>
+                <td>
+                    
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.地址)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.停用)
+                </td>
+                <td>
+                    <input type="button" value="編輯" class="button-success pure-button" onclick="location.href='@Url.Action("Edit", "Customer", new { id = item.Id })'" />
+                    <input type="button" value="明細" class="button-secondary pure-button" onclick="location.href='@Url.Action("Details", "Customer", new { id = item.Id })'" />
+                    <input type="button" value="刪除" class="button-error pure-button" onclick="location.href='@Url.Action("Delete", "Customer", new { id = item.Id })'" />
+                    <input type="button" value="聯絡人" class="pure-button" onclick="location.href='@Url.Action("Index", "ContactPerson", new { id = item.Id })'" />
+                    <input type="button" value="銀行" class="pure-button" onclick="location.href='@Url.Action("Index", "Bank", new { id = item.Id })'" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
