@@ -127,6 +127,7 @@ namespace HomeWorkWeekOne.Controllers
             客戶銀行資訊.停用 = true;
             //db.客戶銀行資訊.Remove(客戶銀行資訊);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
