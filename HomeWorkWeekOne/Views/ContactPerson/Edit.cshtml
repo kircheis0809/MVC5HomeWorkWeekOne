@@ -1,11 +1,10 @@
 ﻿@model HomeWorkWeekOne.Models.客戶聯絡人
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "客戶聯絡人編輯";
 }
-
-<h2>Edit</h2>
-
+@Html.Raw(TempData["msg"])
+<h2>客戶聯絡人編輯</h2>
 
 @using (Html.BeginForm())
 {
@@ -75,15 +74,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="儲存" class="button-warning pure-button" />
+                <input type="button" value="返回客戶聯絡人管理" class="pure-button" onclick="location.href='@Url.Action("Index", "ContactPerson")'" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

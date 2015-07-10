@@ -33,6 +33,7 @@ namespace HomeWorkWeekOne.Controllers
         /// <returns></returns>
         public ActionResult Customer()
         {
+            Session["CustomerId"] = null;
             return View();
         }
 
@@ -42,6 +43,7 @@ namespace HomeWorkWeekOne.Controllers
         /// <returns></returns>
         public ActionResult ContactPerson()
         {
+            Session["CustomerId"] = null;
             return View();
         }
 
@@ -51,6 +53,7 @@ namespace HomeWorkWeekOne.Controllers
         /// <returns></returns>
         public ActionResult Bank()
         {
+            Session["CustomerId"] = null;
             return View();
         }
     }

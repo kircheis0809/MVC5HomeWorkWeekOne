@@ -1,10 +1,10 @@
 ﻿@model HomeWorkWeekOne.Models.客戶銀行資訊
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "客戶銀行資訊刪除";
 }
 
-<h2>Delete</h2>
+<h2>客戶銀行資訊刪除</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -73,8 +73,10 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="刪除" class="button-error pure-button" />
+            <input type="button" value="返回客戶銀行資訊管理" class="pure-button" onclick="location.href='@Url.Action("Index", "Bank")'" />
+        @*<input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "Index")*@
         </div>
     }
 </div>

@@ -7,7 +7,7 @@
 <h2>客戶聯絡人管理</h2>
 
 <p>
-    <input type="button" value="新增" class="pure-button" onclick="location.href='@Url.Action("Create", "ContactPerson")'" />
+    <input type="button" value="新增" class="pure-button" onclick="location.href='@Url.Action("Create", "ContactPerson", new { id = Session["CustomerId"] })'" />
     <input type="button" value="返回客戶管理" class="pure-button" onclick="location.href='@Url.Action("Index", "Customer")'" />
     @*@Html.ActionLink("Create New", "Create")*@
 </p>
@@ -64,7 +64,6 @@
                     @Html.DisplayFor(modelItem => item.客戶資料.客戶名稱)
                 </td>
                 <td>
-
                     <input type="button" value="編輯" class="button-success pure-button" onclick="location.href='@Url.Action("Edit", "ContactPerson", new { id = item.Id })'" />
                     <input type="button" value="明細" class="button-secondary pure-button" onclick="location.href='@Url.Action("Details", "ContactPerson", new { id = item.Id })'" />
                     <input type="button" value="刪除" class="button-error pure-button" onclick="location.href='@Url.Action("Delete", "ContactPerson", new { id = item.Id })'" />

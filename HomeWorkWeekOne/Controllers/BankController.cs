@@ -15,10 +15,19 @@ namespace HomeWorkWeekOne.Controllers
         private 客戶資料Entities db = new 客戶資料Entities();
 
         // GET: /Bank/
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             var 客戶銀行資訊 = db.客戶銀行資訊.Include(客 => 客.客戶資料);
-            return View(客戶銀行資訊.ToList());
+            if (id != null)
+            {
+                Session["CustomerId"] = id;
+                return View(客戶銀行資訊.Where(x => x.客戶Id == id).ToList());
+            }
+            else
+            {
+                return View(客戶銀行資訊.ToList());
+            }
+
         }
 
         // GET: /Bank/Details/5
@@ -37,7 +46,7 @@ namespace HomeWorkWeekOne.Controllers
         }
 
         // GET: /Bank/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱");
             return View();
@@ -115,7 +124,8 @@ namespace HomeWorkWeekOne.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶銀行資訊 客戶銀行資訊 = db.客戶銀行資訊.Find(id);
-            db.客戶銀行資訊.Remove(客戶銀行資訊);
+            客戶銀行資訊.停用 = true;
+            //db.客戶銀行資訊.Remove(客戶銀行資訊);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

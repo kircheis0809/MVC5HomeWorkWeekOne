@@ -12,7 +12,7 @@
 </p>
 <table class="pure-table pure-table-horizontal">
     <thead>
-        <tr>
+        <tr style="text-align:center;vertical-align:middle;">
             <th>
                 @Html.DisplayNameFor(model => model.客戶名稱)
             </th>
@@ -20,16 +20,10 @@
                 @Html.DisplayNameFor(model => model.統一編號)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.電話)@Html.DisplayNameFor(model => model.傳真)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.傳真)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.地址)
+                @Html.DisplayNameFor(model => model.電話)<br />@Html.DisplayNameFor(model => model.傳真)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.地址)<br />@Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.停用)
@@ -40,6 +34,8 @@
     <tbody>
         @foreach (var item in Model)
         {
+            int personCount = item.客戶聯絡人.Count();
+            int bankCount = item.客戶銀行資訊.Count();
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.客戶名稱)
@@ -51,25 +47,21 @@
                     @Html.DisplayFor(modelItem => item.電話)
                     <br />
                     @Html.DisplayFor(modelItem => item.傳真)
-                @*</td>
-                <td>
-                    
-                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.地址)
-                </td>
-                <td>
+                    <br />
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td style="text-align:center">
                     @Html.DisplayFor(modelItem => item.停用)
                 </td>
                 <td>
+                   
                     <input type="button" value="編輯" class="button-success pure-button" onclick="location.href='@Url.Action("Edit", "Customer", new { id = item.Id })'" />
                     <input type="button" value="明細" class="button-secondary pure-button" onclick="location.href='@Url.Action("Details", "Customer", new { id = item.Id })'" />
                     <input type="button" value="刪除" class="button-error pure-button" onclick="location.href='@Url.Action("Delete", "Customer", new { id = item.Id })'" />
-                    <input type="button" value="聯絡人" class="pure-button" onclick="location.href='@Url.Action("Index", "ContactPerson", new { id = item.Id })'" />
-                    <input type="button" value="銀行" class="pure-button" onclick="location.href='@Url.Action("Index", "Bank", new { id = item.Id })'" />
+                    <input type="button" value="聯絡人 (@personCount)" class="pure-button" onclick="location.href='@Url.Action("Index", "ContactPerson", new { id = item.Id })'" />
+                    <input type="button" value="銀行 (@bankCount)" class="pure-button" onclick="location.href='@Url.Action("Index", "Bank", new { id = item.Id })'" />
                 </td>
             </tr>
         }

@@ -1,10 +1,10 @@
 ﻿@model HomeWorkWeekOne.Models.客戶銀行資訊
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "客戶銀行資訊";
 }
 
-<h2>Details</h2>
+<h2>客戶銀行資訊</h2>
 
 <div>
     <h4>客戶銀行資訊</h4>
@@ -69,6 +69,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <input type="button" value="編輯" class="button-success pure-button" onclick="location.href='@Url.Action("Edit", "Bank", new { id = Model.Id })'" />
+    <input type="button" value="返回客戶銀行資訊管理" class="pure-button" onclick="location.href='@Url.Action("Index", "Bank")'" />
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")*@
 </p>

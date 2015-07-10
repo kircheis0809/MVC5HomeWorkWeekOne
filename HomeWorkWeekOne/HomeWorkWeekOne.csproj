@@ -182,6 +182,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CellPhone.cs" />
     <Compile Include="Models\Customer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

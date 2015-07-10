@@ -13,7 +13,6 @@ namespace HomeWorkWeekOne.Controllers
     public class ContactPersonController : Controller
     {
         private 客戶資料Entities db = new 客戶資料Entities();
-        private bool isCustomer = false;
 
         // GET: /ContactPerson/
         public ActionResult Index(int? id)
@@ -22,7 +21,6 @@ namespace HomeWorkWeekOne.Controllers
             if (id != null)
             {
                 Session["CustomerId"] = id;
-                isCustomer = true;
                 return View(客戶聯絡人.Where(x => x.客戶Id == id).ToList());
             }
             else
@@ -62,9 +60,20 @@ namespace HomeWorkWeekOne.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.客戶聯絡人.Add(客戶聯絡人);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var people = db.客戶聯絡人.Where(x => x.Email == 客戶聯絡人.Email).FirstOrDefault();
+                if (people != null)
+                {
+                    TempData["msg"] = "<script>alert('Email不可以重複');</script>";
+                    //throw new Exception("Email不可以重複");
+                }
+                else
+                {
+                    
+                    db.客戶聯絡人.Add(客戶聯絡人);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
             }
 
             ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
@@ -96,9 +105,18 @@ namespace HomeWorkWeekOne.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(客戶聯絡人).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var people = db.客戶聯絡人.Where(x => x.Email == 客戶聯絡人.Email).FirstOrDefault();
+                if (people != null)
+                {
+                    TempData["msg"] = "<script>alert('Email不可以重複');</script>";
+                    //throw new Exception("Email不可以重複");
+                }
+                else
+                {
+                    db.Entry(客戶聯絡人).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
             ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
             return View(客戶聯絡人);
@@ -125,7 +143,8 @@ namespace HomeWorkWeekOne.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶聯絡人 客戶聯絡人 = db.客戶聯絡人.Find(id);
-            db.客戶聯絡人.Remove(客戶聯絡人);
+            客戶聯絡人.停用 = true;
+            //db.客戶聯絡人.Remove(客戶聯絡人);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -138,5 +157,7 @@ namespace HomeWorkWeekOne.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

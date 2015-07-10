@@ -11,14 +11,23 @@ namespace HomeWorkWeekOne.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class 客戶聯絡人
     {
         public int Id { get; set; }
         public int 客戶Id { get; set; }
+        [StringLength(50)]
+        [Required]
         public string 職稱 { get; set; }
+        [StringLength(50)]
+        [Required]
         public string 姓名 { get; set; }
+        [EmailAddress]
+        [Required]
         public string Email { get; set; }
+        [CellPhone]
+        [RegularExpression(@"\d{4}-\d{6}", ErrorMessage = "手機格式不正確，範例：0911-111111")]
         public string 手機 { get; set; }
         public string 電話 { get; set; }
         public bool 停用 { get; set; }

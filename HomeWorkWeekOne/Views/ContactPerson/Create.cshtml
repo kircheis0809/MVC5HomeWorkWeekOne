@@ -5,7 +5,7 @@
 }
 
 <h2>客戶聯絡人新增</h2>
-
+@Html.Raw(TempData["msg"])
 
 @using (Html.BeginForm()) 
 {
@@ -75,7 +75,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="儲存" class="button-warning pure-button" />
-                <input type="button" value="返回客戶管理" class="pure-button" onclick="location.href='@Url.Action("Index", "ContactPerson")'" />
+                <input type="button" value="返回客戶聯絡人管理" class="pure-button" onclick="location.href='@Url.Action("Index", "ContactPerson", new { id = Session["CustomerId"] })'" />
                 @*<input type="submit" value="Create" class="btn btn-default" />*@
             </div>
         </div>

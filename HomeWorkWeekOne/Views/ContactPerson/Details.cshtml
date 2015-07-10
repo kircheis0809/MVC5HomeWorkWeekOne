@@ -1,10 +1,10 @@
 ﻿@model HomeWorkWeekOne.Models.客戶聯絡人
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "客戶聯絡人";
 }
 
-<h2>Details</h2>
+<h2>客戶聯絡人</h2>
 
 <div>
     <h4>客戶聯絡人</h4>
@@ -69,6 +69,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <input type="button" value="編輯" class="button-success pure-button" onclick="location.href='@Url.Action("Edit", "ContactPerson", new { id = Model.Id })'" />
+    <input type="button" value="返回客戶聯絡人管理" class="pure-button" onclick="location.href='@Url.Action("Index", "ContactPerson")'" />
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")*@
 </p>
